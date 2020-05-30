@@ -227,6 +227,7 @@ public class MainActivity extends AppCompatActivity implements ProgressRequestBo
             public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
                 if (response.code() == 201){
                     binding.progressBar.setVisibility(View.INVISIBLE);
+                    binding.uploadImage.setEnabled(true);
                     Snackbar.make(findViewById(android.R.id.content),
                             ""+response.body()
                             , Snackbar.LENGTH_LONG).show();
@@ -236,6 +237,7 @@ public class MainActivity extends AppCompatActivity implements ProgressRequestBo
             @Override
             public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
                 binding.progressBar.setVisibility(View.INVISIBLE);
+                binding.uploadImage.setEnabled(true);
                 Snackbar.make(findViewById(android.R.id.content),
                         file.getName()+ t.getMessage()
                         , Snackbar.LENGTH_LONG).show();
@@ -246,16 +248,17 @@ public class MainActivity extends AppCompatActivity implements ProgressRequestBo
     @Override
     public void onProgressUpdate(int percentage) {
         binding.progressBar.setVisibility(View.VISIBLE);
+        binding.uploadImage.setEnabled(false);
         binding.progressBar.setProgress(percentage);
     }
 
     @Override
     public void onError() {
-
+        binding.uploadImage.setEnabled(true);
     }
 
     @Override
     public void onFinish() {
-
+        binding.uploadImage.setEnabled(true);
     }
 }

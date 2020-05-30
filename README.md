@@ -35,3 +35,6 @@ buildTypes {
         }
     }
 ```
+
+Corona Detection API repository link:
+https://github.com/ferozkhandev/corona_detection_api
